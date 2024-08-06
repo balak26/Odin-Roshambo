@@ -3,10 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <title>Odin Roshambo</title>
   </head>
   <body>
-    <h1 style="color: red">Open Console to play the GAME!!</h1>
+    <div class="container">
+      <div class="msg">
+        <span id="text"></span>
+        <button>Play Again</button>
+      </div>
+      <div id="result"></div>
+
+      <div class="choice">
+        <h3>Player: <span id="playerChoice"></span></h3>
+        <h3>Computer: <span id="computerChoice"></span></h3>
+      </div>
+
+      <div class="score">
+        <h4>Player Score: <span id="player"></span></h4>
+        <h4>Computer Score: <span id="pc"></span></h4>
+      </div>
+
+      <div class="chose">
+        <button onclick="play(0)">Rock</button>
+        <button onclick="play(1)">Papers</button>
+        <button onclick="play(2)">Scissors</button>
+      </div>
+    </div>
+
     <script src="./main.js"></script>
   </body>
 </html>

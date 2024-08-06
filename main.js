@@ -1,58 +1,55 @@
-const getComputerChoice = () => {
-  let choice = Math.floor(Math.random() * 3);
-  if (choice === 0) {
-    return "rock";
-  } else if (choice === 1) {
-    return "paper";
-  } else {
-    return "scissors";
+let result = "";
+let playerScore = 0;
+let computerScore = 0;
+let score = playerScore + computerScore;
+
+function play(i) {
+  const choices = ["rock", "paper", "scissors"];
+  const index = Math.floor(Math.random() * 3);
+  const computerChoice = choices[index];
+  const humanChoice = choices[i];
+
+  if (humanChoice === "rock" && computerChoice === "rock") {
+    result = "Both are Rock, Its a tie";
+  } else if (humanChoice === "rock" && computerChoice === "paper") {
+    computerScore++;
+    result = "Paper beats Rock, Computer wins";
+  } else if (humanChoice === "rock" && computerChoice === "scissors") {
+    playerScore++;
+    result = "Rock crushes Scissors, Player wins";
+  } else if (humanChoice === "paper" && computerChoice === "paper") {
+    result = "Both are paper, Its a tie";
+  } else if (humanChoice === "paper" && computerChoice === "rock") {
+    playerScore++;
+    result = "Paper beats Rock, Player wins";
+  } else if (humanChoice === "paper" && computerChoice === "scissors") {
+    computerScore++;
+    result = "Scissors cut papers, Computer wins ";
+  } else if (humanChoice === "scissors" && computerChoice === "scissors") {
+    result = "Both are scissors, Its a tie";
+  } else if (humanChoice === "scissors" && computerChoice === "rock") {
+    computerScore++;
+    result = "Rock crushes Scissors, Computer wins";
+  } else if (humanChoice === "scissors" && computerChoice === "papers") {
+    playerScore++;
+    result = "Scissors cut papers, Player wins ";
   }
-};
 
-const getHumanChoice = () => {
-  let choice = prompt("Enter Rock, Paper or Scissors to play").toLowerCase();
+  if (playerScore + computerScore === 6) {
+    // document.querySelector(".msg #text").innerHTML = result;
+    // document.querySelector(".msg #text").style.display = "flex";
+    playerScore = 0;
+    computerScore = 0;
+    if (playerScore > computerScore) alert("Player Wins");
+    else alert("Computer Wins");
 
-  return choice;
-};
-
-const playGame = () => {
-  let humanScore = 0;
-  let computerScore = 0;
-
-  const playRound = (humanChoice, computerChoice) => {
-    if (humanChoice === "rock" && computerChoice === "rock") {
-      return "Both are Rock, Its a tie";
-    } else if (humanChoice === "rock" && computerChoice === "paper") {
-      computerScore++;
-      return "Paper beats Rock, Computer wins";
-    } else if (humanChoice === "rock" && computerChoice === "scissors") {
-      humanScore++;
-      return "Rock crushes Scissors, Player wins";
-    } else if (humanChoice === "paper" && computerChoice === "paper") {
-      return "Both are paper, Its a tie";
-    } else if (humanChoice === "paper" && computerChoice === "rock") {
-      humanScore++;
-      return "Paper beats Rock, Player wins";
-    } else if (humanChoice === "paper" && computerChoice === "scissors") {
-      computerScore++;
-      return "Scissors cut papers, Computer wins ";
-    } else if (humanChoice === "scissors" && computerChoice === "scissors") {
-      return "Both are scissors, Its a tie";
-    } else if (humanChoice === "scissors" && computerChoice === "rock") {
-      computerScore++;
-      return "Rock crushes Scissors, Computer wins";
-    } else if (humanChoice === "scissors" && computerChoice === "papers") {
-      humanScore++;
-      return "Scissors cut papers, Player wins ";
-    }
-  };
-
-  for (let i = 1; i <= 5; i++) {
-    console.log(playRound(getComputerChoice(), getHumanChoice()));
-    console.log(
-      `Player Score: ${humanScore}, Computer Score: ${computerScore}`
-    );
+    // document.querySelector(".msg").classList.add("");
   }
-};
 
-playGame();
+  document.querySelector("#playerChoice").innerText = humanChoice;
+  document.querySelector("#computerChoice").innerText = computerChoice;
+
+  document.querySelector("#player").innerText = playerScore;
+  document.querySelector("#pc").innerText = computerScore;
+  document.querySelector("#result").innerText = ` ${result}`;
+}
